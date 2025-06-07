@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-app
+  name: fastapi-app
   namespace: default
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: sample-app
+      app: fastapi-app
   template:
     metadata:
       labels:
-        app: sample-app
+        app: fastapi-app
     spec:
       containers:
-      - name: sample-app
-        image: asia-northeast1-docker.pkg.dev/gcp-iap-test-442622/argocd-app/sample-app
+      - name: fastapi-app
+        image: asia-northeast1-docker.pkg.dev/gcp-iap-test-442622/argocd-app/fastapi-app
         ports:
         - containerPort: 8000
         resources:
@@ -29,11 +29,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app-service
+  name: fastapi-app-service
   namespace: default
 spec:
   selector:
-    app: sample-app
+    app: fastapi-app
   ports:
   - port: 80
     targetPort: 8000
